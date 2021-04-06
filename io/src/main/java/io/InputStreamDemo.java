@@ -1,3 +1,5 @@
+package io;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,7 +10,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author xuliangliang
  */
-public class GenericDemo {
+public class InputStreamDemo {
 
     public static void main(String[] args) {
         ByteArrayInputStream is = new ByteArrayInputStream("徐靓靓".getBytes(StandardCharsets.UTF_8));
