@@ -1,1 +1,3 @@
 /io/target/
+/redis/target/
+/.idea/
