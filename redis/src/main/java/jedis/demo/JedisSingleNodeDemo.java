@@ -1,5 +1,6 @@
-package jedis;
+package jedis.demo;
 
+import constants.IpConstants;
 import redis.clients.jedis.Jedis;
 
 /**
@@ -10,7 +11,7 @@ import redis.clients.jedis.Jedis;
 public class JedisSingleNodeDemo {
 
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("172.16.13.2");
+        Jedis jedis = new Jedis(IpConstants.ip());
         jedis.set("key", "value");
         jedis.close();
     }

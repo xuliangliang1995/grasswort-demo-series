@@ -25,7 +25,7 @@ public class ByteBufferDemo {
                 System.out.printf("position => %d\n", buffer.position());
                 System.out.printf("%s -> %s\n", b, (char) b);
             } catch (BufferUnderflowException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 break;
             }
         }
@@ -39,6 +39,15 @@ public class ByteBufferDemo {
         byte[] bytes = buffer.array();
         System.out.println(new String(bytes));
         System.out.printf("position => %d\n", buffer.position());
+
+        // 反转 去 读取
+        buffer.flip();
+        System.out.printf("position => %d, limit => %d\n", buffer.position(), buffer.limit());
+
+        while (buffer.hasRemaining()) {
+            byte b = buffer.get();
+            System.out.println((char) b);
+        }
 
     }
 }
