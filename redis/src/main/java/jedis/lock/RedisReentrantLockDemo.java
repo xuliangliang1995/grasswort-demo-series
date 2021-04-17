@@ -36,13 +36,9 @@ public class RedisReentrantLockDemo {
                     lock.lock(lockKey);
                     // do something
                     System.out.println(Thread.currentThread().getId() + " get the lock ..");
-                    try {
-                        TimeUnit.SECONDS.sleep(1);
-                        count--;
-                        System.out.println(count);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    //TimeUnit.SECONDS.sleep(1);
+                    count--;
+                    System.out.println(count);
                 } finally {
                     lock.unlock(lockKey);
                 }

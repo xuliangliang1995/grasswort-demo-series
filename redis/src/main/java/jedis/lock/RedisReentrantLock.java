@@ -31,12 +31,8 @@ public class RedisReentrantLock {
             if (lockSuccess) {
                 break;
             }
-            try {
-                // 等一秒再试(先粗糙处理)
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            // 等一秒再试(先粗糙处理)
+            //TimeUnit.SECONDS.sleep(1);
         }
     }
 
