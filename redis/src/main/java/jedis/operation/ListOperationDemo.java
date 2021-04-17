@@ -1,4 +1,4 @@
-package jedis.string;
+package jedis.operation;
 
 import jedis.JedisSentinelPoolFactory;
 import redis.clients.jedis.Jedis;

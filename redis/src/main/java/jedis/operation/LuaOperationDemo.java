@@ -1,11 +1,9 @@
-package jedis.string;
+package jedis.operation;
 
 import jedis.JedisSentinelPoolFactory;
 import jedis.util.JedisLuaExecutor;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
-
-import java.util.List;
 
 /**
  * @author 🌺xuliangliang🌺
