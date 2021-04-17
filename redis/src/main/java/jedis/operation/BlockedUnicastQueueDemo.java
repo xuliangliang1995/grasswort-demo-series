@@ -1,7 +1,6 @@
 package jedis.operation;
 
 import jedis.JedisSentinelPoolFactory;
-import org.apache.commons.codec.binary.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
 
