@@ -23,6 +23,7 @@ public class SetOperationDemo {
         jedis.smembers(setKey)
                 .forEach(System.out::println);
 
+        jedis.close();
         sentinelPool.destroy();
         sentinelPool.close();
     }

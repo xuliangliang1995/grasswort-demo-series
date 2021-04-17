@@ -30,10 +30,10 @@ public class JedisHaSentinelDemo {
         // create jedis sentinel pool
         JedisSentinelPool jedisSentinelPool = new JedisSentinelPool("mymaster", sentinels, poolConfig);
 
-        Jedis jedis = jedisSentinelPool.getResource();
-        jedis.set("sentinel", "sentinelVal");
+        try (Jedis jedis = jedisSentinelPool.getResource()) {
+            jedis.set("sentinel", "sentinelVal");
+        }
 
-        jedis.close();
         jedisSentinelPool.destroy();
         jedisSentinelPool.close();
     }

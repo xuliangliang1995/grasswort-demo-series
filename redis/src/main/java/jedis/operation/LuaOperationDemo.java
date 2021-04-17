@@ -1,7 +1,7 @@
 package jedis.operation;
 
 import jedis.JedisSentinelPoolFactory;
-import jedis.util.JedisLuaExecutor;
+import jedis.util.JedisLuaCacheableExecutor;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
 
@@ -28,7 +28,7 @@ public class LuaOperationDemo {
 
         // example 3
         String luaScript = "return redis.call('set', KEYS[1], ARGV[1])";
-        Object result3 = JedisLuaExecutor.evalLuaScript(jedis, luaScript, 1, "sha1Key", "sha1Val");
+        Object result3 = JedisLuaCacheableExecutor.evalLuaScript(jedis, luaScript, 1, "sha1Key", "sha1Val");
         String val = jedis.get("sha1Key");
         System.out.println(result3);
         System.out.println(val);

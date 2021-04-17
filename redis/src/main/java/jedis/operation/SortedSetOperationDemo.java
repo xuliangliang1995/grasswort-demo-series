@@ -38,6 +38,7 @@ public class SortedSetOperationDemo {
         jedis.zrange(sortedSetKey, 0, -1)
                 .forEach(System.out::println);
 
+        jedis.close();
         sentinelPool.destroy();
         sentinelPool.close();
     }

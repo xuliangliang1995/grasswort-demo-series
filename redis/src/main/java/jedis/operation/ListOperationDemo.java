@@ -31,6 +31,7 @@ public class ListOperationDemo {
         List<String> listValues = jedis.lrange(listKey, 0, -1);
         listValues.forEach(System.out::println);
 
+        jedis.close();
         sentinelPool.destroy();
         sentinelPool.close();
     }

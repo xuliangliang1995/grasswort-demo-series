@@ -35,5 +35,9 @@ public class StringOperationDemo {
 
         System.out.printf("%s[%s]:%s\n", bitmapKey, 0L, jedis.getbit(bitmapKey, 0L));
         System.out.printf("%s[%s]:%s\n", bitmapKey, 3L, jedis.getbit(bitmapKey, 3L));
+
+        jedis.close();
+        sentinelPool.destroy();
+        sentinelPool.close();
     }
 }

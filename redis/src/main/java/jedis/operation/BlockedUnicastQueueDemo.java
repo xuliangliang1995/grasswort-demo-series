@@ -23,38 +23,38 @@ public class BlockedUnicastQueueDemo {
         sentinelPool.getResource().del(unicastQueueKey);
 
         Thread publisher = new Thread(() -> {
-            Jedis jedis = sentinelPool.getResource();
             Random random = new Random();
             while (true) {
-                try {
+                try (Jedis jedis = sentinelPool.getResource()) {
                     TimeUnit.SECONDS.sleep(random.nextInt(5));
+                    String randomIntVal = String.valueOf(random.nextInt(100));
+                    System.out.println("[PUBLISHER] : >>>>>> " + randomIntVal);
+                    jedis.rpush(unicastQueueKey, randomIntVal);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                String randomIntVal = String.valueOf(random.nextInt(100));
-                System.out.println("[PUBLISHER] : >>>>>> " + randomIntVal);
-                jedis.rpush(unicastQueueKey, randomIntVal);
             }
-
         }, "publisher");
 
         Thread subscriber1 = new Thread(() -> {
-            Jedis jedis = sentinelPool.getResource();
-            while (true) {
-                List<String> receives = jedis.blpop(unicastQueueKey, "60");
-                if (receives.size() > 0) {
-                    System.out.printf("SUBSCRIBE[1] receive from [%s] : %s\n", receives.get(0), receives.get(1));
+            try (Jedis jedis = sentinelPool.getResource()) {
+                while (true) {
+                    List<String> receives = jedis.blpop(unicastQueueKey, "60");
+                    if (receives.size() > 0) {
+                        System.out.printf("SUBSCRIBE[1] receive from [%s] : %s\n", receives.get(0), receives.get(1));
+                    }
                 }
             }
         }, "subscriber_1");
 
 
         Thread subscriber2 = new Thread(() -> {
-            Jedis jedis = sentinelPool.getResource();
-            while (true) {
-                List<String> receives = jedis.blpop(unicastQueueKey, "60");
-                if (receives.size() > 0) {
-                    System.out.printf("SUBSCRIBE[2] receive from [%s] : %s\n", receives.get(0), receives.get(1));
+            try (Jedis jedis = sentinelPool.getResource()) {
+                while (true) {
+                    List<String> receives = jedis.blpop(unicastQueueKey, "60");
+                    if (receives.size() > 0) {
+                        System.out.printf("SUBSCRIBE[2] receive from [%s] : %s\n", receives.get(0), receives.get(1));
+                    }
                 }
             }
         }, "subscriber_2");

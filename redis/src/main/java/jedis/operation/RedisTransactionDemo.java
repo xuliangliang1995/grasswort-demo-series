@@ -41,6 +41,7 @@ public class RedisTransactionDemo {
         System.out.println(jedis.get("test1"));
         System.out.println(jedis.get("test2"));
 
+        jedis.close();
         sentinelPool.destroy();
         sentinelPool.close();
 

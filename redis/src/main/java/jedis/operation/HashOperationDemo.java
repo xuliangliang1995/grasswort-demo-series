@@ -36,6 +36,7 @@ public class HashOperationDemo {
         String age = jedis.hget(hashKey, "age");
         System.out.println(age);
 
+        jedis.close();
         sentinelPool.destroy();
         sentinelPool.close();
     }

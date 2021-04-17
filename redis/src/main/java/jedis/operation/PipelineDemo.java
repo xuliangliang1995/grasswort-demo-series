@@ -33,6 +33,7 @@ public class PipelineDemo {
 
         System.out.println(key2Val.get());
 
+        jedis.close();
         sentinelPool.destroy();
         sentinelPool.close();
     }

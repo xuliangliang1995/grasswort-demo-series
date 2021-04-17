@@ -4,12 +4,17 @@ import org.apache.commons.codec.digest.DigestUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisNoScriptException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author 🌺xuliangliang🌺
  * @Description
  * @Date 2021/4/17
  */
-public class JedisLuaExecutor {
+public class JedisLuaCacheableExecutor {
+
+    private static final Map<String, String> scriptSha1Map = new HashMap<>(10);
 
     /**
      * 执行 lua 脚本
@@ -29,7 +34,7 @@ public class JedisLuaExecutor {
         if (script == null || script.length() == 0) {
             return null;
         }
-        String sha1 = DigestUtils.sha1Hex(script);
+        String sha1 = sha1(script);
         try {
             return jedis.evalsha(sha1, keyCount, params);
         } catch (JedisNoScriptException e) {
@@ -39,5 +44,17 @@ public class JedisLuaExecutor {
             assert sha1.equals(sha2);
             return jedis.evalsha(sha1, keyCount, params);
         }
+    }
+
+    /**
+     * 获取 sha1
+     * @param script
+     * @return
+     */
+    private static String sha1(String script) {
+        if (! scriptSha1Map.containsKey(script)) {
+            scriptSha1Map.put(script, DigestUtils.sha1Hex(script));
+        }
+        return scriptSha1Map.get(script);
     }
 }
