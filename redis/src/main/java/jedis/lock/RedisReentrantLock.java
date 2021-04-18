@@ -1,5 +1,6 @@
 package jedis.lock;
 
+import jedis.lock.id.ThreadDistributedID;
 import jedis.util.JedisLuaCacheableExecutor;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.util.Pool;
@@ -45,7 +46,7 @@ public class RedisReentrantLock {
     public boolean tryLock(String lockKey, long expireSeconds) {
         try (Jedis jedis = jedisPool.getResource()) {
             Object res = JedisLuaCacheableExecutor.evalLuaScript(jedis, LOCK_SCRIPT,
-                    1, lockKey, String.valueOf(Thread.currentThread().getId()), String.valueOf(expireSeconds));
+                    1, lockKey, ThreadDistributedID.id(), String.valueOf(expireSeconds));
             // System.out.println("[" + lockKey+ "] lock  >>>> " + res);
             return res instanceof Long && (Long)res > 0L;
         }
@@ -59,7 +60,7 @@ public class RedisReentrantLock {
     public void unlock(String lockKey) {
         try (Jedis jedis = jedisPool.getResource()) {
             Object res = JedisLuaCacheableExecutor.evalLuaScript(jedis, UNLOCK_SCRIPT,
-                    1, lockKey, String.valueOf(Thread.currentThread().getId()));
+                    1, lockKey, ThreadDistributedID.id());
             // System.out.println("[" + lockKey + "]unlock >>>> " + res);
         }
     }
