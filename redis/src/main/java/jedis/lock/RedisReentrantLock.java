@@ -32,8 +32,7 @@ public class RedisReentrantLock {
             if (lockSuccess) {
                 break;
             }
-            // 等一秒再试(先粗糙处理)
-            //TimeUnit.SECONDS.sleep(1);
+            // 无限循环直到获取锁,可以优化成二阶段锁,多次尝试无果后加入队列
         }
     }
 
