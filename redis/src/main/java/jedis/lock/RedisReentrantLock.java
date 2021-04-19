@@ -5,6 +5,7 @@ import jedis.util.JedisLuaCacheableExecutor;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.util.Pool;
 
+import java.text.NumberFormat;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,8 +48,9 @@ public class RedisReentrantLock {
         try (Jedis jedis = jedisPool.getResource()) {
             Object res = JedisLuaCacheableExecutor.evalLuaScript(jedis, LOCK_SCRIPT,
                     1, lockKey, ThreadDistributedID.id(), String.valueOf(expireSeconds));
-            // System.out.println("[" + lockKey+ "] lock  >>>> " + res);
-            return res instanceof Long && (Long)res > 0L;
+            int lockCount = Integer.parseInt(String.valueOf(res));
+            // System.out.println("[" + lockKey+ "] lock  >>>> " + lockCount);
+            return lockCount > 0;
         }
     }
 
@@ -76,12 +78,12 @@ public class RedisReentrantLock {
             "        local lock_count = redis.call(\"HGET\", lock_key, \"lock_count\");\n" +
             "        return lock_count;\n" +
             "    else\n" +
-            "        return 0\n" +
+            "        return \"0\"\n" +
             "    end\n" +
             "else\n" +
             "    redis.call(\"HMSET\", lock_key, \"ID\", mutex_id, \"lock_count\", \"1\");\n" +
             "    redis.call(\"EXPIRE\", lock_key, expire_seconds);\n" +
-            "    return 1\n" +
+            "    return \"1\"\n" +
             "end";
 
     private final static String UNLOCK_SCRIPT = "local lock_key = KEYS[1]\n" +
@@ -96,9 +98,9 @@ public class RedisReentrantLock {
             "        end\n" +
             "        return lock_count;\n" +
             "    else\n" +
-            "        return 0\n" +
+            "        return \"0\"\n" +
             "    end\n" +
             "else\n" +
-            "    return 0\n" +
+            "    return \"0\"\n" +
             "end";
 }
