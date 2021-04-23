@@ -7,7 +7,7 @@ package constants;
  */
 public class IpConstants {
 
-    private static final boolean useMac = true;
+    private static final boolean useMac = false;
 
     private static final String MAC = "172.16.13.2";
 

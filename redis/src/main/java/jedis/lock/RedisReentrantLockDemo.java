@@ -25,8 +25,8 @@ public class RedisReentrantLockDemo {
 
         // 先测试一下,是否支持可重入
         lock.lock(lockKey);
-        lock.unlock(lockKey);
         lock.lock(lockKey);
+        lock.unlock(lockKey);
         lock.unlock(lockKey);
 
         // 再测试是否可以起到互斥的作用
