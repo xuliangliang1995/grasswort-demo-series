@@ -11,7 +11,7 @@ import java.util.concurrent.locks.LockSupport;
 
 /**
  * @author 🌺xuliangliang🌺
- * @Description 利用 list 实现阻塞单播队列
+ * @Description 利用 list 实现阻塞单播队列(只阻塞客户端,服务端是不阻塞的)
  * @Date 2021/4/17
  */
 public class BlockedUnicastQueueDemo {
