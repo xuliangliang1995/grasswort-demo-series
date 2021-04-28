@@ -11,6 +11,7 @@
     <modules>
         <module>io</module>
         <module>redis</module>
+        <module>mongodb</module>
     </modules>
 
     <properties>
