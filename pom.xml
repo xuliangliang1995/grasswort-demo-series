@@ -12,6 +12,7 @@
         <module>io</module>
         <module>redis</module>
         <module>mongodb</module>
+        <module>kafka</module>
     </modules>
 
     <properties>

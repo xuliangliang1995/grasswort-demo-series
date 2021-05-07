@@ -10,6 +10,7 @@
         <module name="mongodb" />
         <module name="io" />
         <module name="redis" />
+        <module name="kafka" />
       </profile>
     </annotationProcessing>
   </component>
