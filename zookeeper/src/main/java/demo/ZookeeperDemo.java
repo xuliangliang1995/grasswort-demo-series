@@ -5,6 +5,7 @@ import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.LockSupport;
 
 /**
@@ -14,14 +15,12 @@ import java.util.concurrent.locks.LockSupport;
  */
 public class ZookeeperDemo {
 
-    private static volatile int start = 0;
+    private static CountDownLatch latch = new CountDownLatch(1);
 
     public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
         ZooKeeper zookeeper = new ZooKeeper(ZookeeperServerConstants.SERVER_URL, 3000, watcher);
 
-        while (true) {
-            if (start == 1) break;
-        }
+        latch.await();
 
         String pathName = zookeeper.create("/xxoo", "oldData".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
         System.out.println(pathName);
@@ -77,7 +76,7 @@ public class ZookeeperDemo {
                     break;
                 case SyncConnected:
                     System.out.println("connected .");
-                    start = 1;
+                    latch.countDown();
                     break;
                 case AuthFailed:
                     break;
