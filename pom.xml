@@ -13,6 +13,7 @@
         <module>redis</module>
         <module>mongodb</module>
         <module>kafka</module>
+        <module>zookeeper</module>
     </modules>
 
     <properties>

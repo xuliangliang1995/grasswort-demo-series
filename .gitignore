@@ -3,3 +3,4 @@
 /.idea/
 /mongodb/target/
 /kafka/target/
+/zookeeper/target/
