@@ -1,4 +1,4 @@
-package config;
+package util;
 
 import constants.ZookeeperServerConstants;
 import org.apache.zookeeper.WatchedEvent;

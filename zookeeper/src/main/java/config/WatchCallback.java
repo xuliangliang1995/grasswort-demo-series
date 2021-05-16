@@ -10,7 +10,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * @author 🌺xuliangliang🌺
- * @Description
+ * @Description 监控 /demo/config1 内容变更
  * @Date 2021/5/14
  */
 public class WatchCallback implements Watcher, AsyncCallback.StatCallback, AsyncCallback.DataCallback {

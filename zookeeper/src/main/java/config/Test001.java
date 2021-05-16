@@ -1,12 +1,10 @@
 package config;
-import config.ConfigContext;
 
 
 import org.apache.zookeeper.ZooKeeper;
-import sun.security.krb5.Config;
+import util.ZkUtil;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.LockSupport;
 
 /**
  * @author 🌺xuliangliang🌺
