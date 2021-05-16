@@ -11,7 +11,7 @@ import java.util.concurrent.CountDownLatch;
  * @Description
  * @Date 2021/5/16
  */
-public class ZkLockWatchCallback implements Watcher, AsyncCallback.StringCallback, AsyncCallback.Children2Callback, AsyncCallback.StatCallback {
+public class ZkDistributedLock implements Watcher, AsyncCallback.StringCallback, AsyncCallback.Children2Callback, AsyncCallback.StatCallback {
 
     private final String path;
 
@@ -21,7 +21,7 @@ public class ZkLockWatchCallback implements Watcher, AsyncCallback.StringCallbac
 
     private CountDownLatch latch = new CountDownLatch(1);
 
-    public ZkLockWatchCallback(String path) {
+    public ZkDistributedLock(String path) {
         this.path = path;
     }
 

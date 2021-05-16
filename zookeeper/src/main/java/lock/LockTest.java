@@ -3,10 +3,8 @@ package lock;
 import org.apache.zookeeper.ZooKeeper;
 import util.ZkUtil;
 
-import javax.swing.plaf.IconUIResource;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.LockSupport;
 
 /**
  * @author 🌺xuliangliang🌺
@@ -22,7 +20,7 @@ public class LockTest {
 
         for (int i = 0; i < threads; i++) {
             new Thread(() -> {
-                ZkLockWatchCallback lockCallback = new ZkLockWatchCallback("/lock");
+                ZkDistributedLock lockCallback = new ZkDistributedLock("/lock");
                 lockCallback.setZk(zk);
                 lockCallback.tryLock();
                 try {
