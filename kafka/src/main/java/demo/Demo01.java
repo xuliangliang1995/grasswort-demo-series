@@ -1,6 +1,10 @@
 package demo;
 
 import constants.KafkaServerConstants;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.admin.KafkaAdminClient;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -9,14 +13,12 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +31,8 @@ import java.util.concurrent.TimeUnit;
 public class Demo01 {
 
     public static void main(String[] args) {
-        new Thread(Demo01::consumer).start();
+        createTopic();
+        /*new Thread(Demo01::consumer).start();
 
         new Thread(() -> {
             try {
@@ -37,7 +40,18 @@ public class Demo01 {
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
-        }).start();
+        }).start();*/
+    }
+
+    public static void createTopic() {
+        Properties properties = new Properties();
+        properties.setProperty(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaServerConstants.SERVER);
+        AdminClient client = KafkaAdminClient.create(properties);
+        NewTopic topic = new NewTopic("newTopic", 2, (short) 2);
+        Map<String, String> topicCfg = new HashMap<>();
+        topicCfg.put(TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG, "2");
+        client.createTopics(Arrays.asList(topic));
+        client.close();
     }
 
 
