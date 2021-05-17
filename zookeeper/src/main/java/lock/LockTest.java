@@ -20,7 +20,7 @@ public class LockTest {
 
         for (int i = 0; i < threads; i++) {
             new Thread(() -> {
-                ZkDistributedLock lockCallback = new ZkDistributedLock("/lock");
+                ZkDistributedLock lockCallback = new ZkDistributedLock("/distributed_lock/lock");
                 lockCallback.setZk(zk);
                 lockCallback.tryLock();
                 try {
