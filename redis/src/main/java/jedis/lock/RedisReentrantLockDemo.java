@@ -4,6 +4,7 @@ import jedis.JedisSentinelPoolFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,7 +14,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class RedisReentrantLockDemo {
 
-    public static volatile int count = 10;
 
     public static void main(String[] args) {
         JedisSentinelPool sentinelPool = JedisSentinelPoolFactory.sentinelPool();
@@ -29,6 +29,8 @@ public class RedisReentrantLockDemo {
         lock.unlock(lockKey);
         lock.unlock(lockKey);
 
+        CountDownLatch latch = new CountDownLatch(10);
+
         // 再测试是否可以起到互斥的作用
         for (int i = 0; i < 10; i++) {
             Thread thread = new Thread(() -> {
@@ -36,20 +38,24 @@ public class RedisReentrantLockDemo {
                     lock.lock(lockKey);
                     // do something
                     System.out.println(Thread.currentThread().getId() + " get the lock ..");
-                    //TimeUnit.SECONDS.sleep(1);
-                    count--;
-                    System.out.println(count);
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 } finally {
                     lock.unlock(lockKey);
+                    latch.countDown();
                 }
             }, "TEST_THREAD");
             thread.start();
         }
 
-        while (true) {
-            if (count == 0) {
-                break;
-            }
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         sentinelPool.destroy();
         sentinelPool.close();
