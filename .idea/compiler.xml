@@ -9,11 +9,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="multi-thread" />
         <module name="zookeeper" />
-        <module name="mongodb" />
         <module name="io" />
-        <module name="redis" />
         <module name="kafka" />
+        <module name="mongodb" />
+        <module name="redis" />
         <module name="netty" />
+        <module name="algorithm" />
       </profile>
     </annotationProcessing>
   </component>
