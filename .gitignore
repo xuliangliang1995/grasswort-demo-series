@@ -4,3 +4,4 @@
 /mongodb/target/
 /kafka/target/
 /zookeeper/target/
+/multi-thread/target/

@@ -31,8 +31,8 @@ import java.util.concurrent.TimeUnit;
 public class Demo01 {
 
     public static void main(String[] args) {
-        createTopic();
-        /*new Thread(Demo01::consumer).start();
+        //createTopic();
+        new Thread(Demo01::consumer).start();
 
         new Thread(() -> {
             try {
@@ -40,7 +40,7 @@ public class Demo01 {
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
-        }).start();*/
+        }).start();
     }
 
     public static void createTopic() {
