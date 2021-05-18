@@ -12,6 +12,7 @@
         <module name="io" />
         <module name="redis" />
         <module name="kafka" />
+        <module name="netty" />
       </profile>
     </annotationProcessing>
   </component>
