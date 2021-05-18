@@ -15,12 +15,12 @@ import java.util.concurrent.locks.LockSupport;
  */
 public class ZookeeperDemo {
 
-    private static CountDownLatch countDownLatch = new CountDownLatch(1);
+    private static CountDownLatch latch = new CountDownLatch(1);
 
     public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
         ZooKeeper zookeeper = new ZooKeeper(ZookeeperServerConstants.SERVER_URL, 3000, watcher);
 
-        countDownLatch.await();
+        latch.await();
 
         String pathName = zookeeper.create("/xxoo", "oldData".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
         System.out.println(pathName);
@@ -76,7 +76,7 @@ public class ZookeeperDemo {
                     break;
                 case SyncConnected:
                     System.out.println("connected .");
-                    countDownLatch.countDown();
+                    latch.countDown();
                     break;
                 case AuthFailed:
                     break;

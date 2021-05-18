@@ -5,3 +5,4 @@
 /kafka/target/
 /zookeeper/target/
 /netty/target/
+/multi-thread/target/
