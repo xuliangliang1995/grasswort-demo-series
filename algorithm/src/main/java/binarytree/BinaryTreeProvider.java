@@ -14,7 +14,7 @@ public class BinaryTreeProvider {
      *       d    e f   g
      * @return
      */
-    public static Node birnaryTree() {
+    public static Node binaryTree() {
         Node a = new Node("a");
         Node b = new Node("b");
         Node c = new Node("c");

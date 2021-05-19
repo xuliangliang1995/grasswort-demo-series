@@ -8,7 +8,7 @@ package binarytree;
 public class BinaryTreeTraverseDemo1 {
 
     public static void main(String[] args) {
-        Node tree = BinaryTreeProvider.birnaryTree();
+        Node tree = BinaryTreeProvider.binaryTree();
 
         System.out.println("先序 : ");
         pre(tree);
