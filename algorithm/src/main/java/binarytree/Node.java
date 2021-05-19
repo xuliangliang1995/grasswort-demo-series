@@ -1,4 +1,4 @@
-package birnarytree;
+package binarytree;
 
 /**
  * @author 🌺xuliangliang🌺

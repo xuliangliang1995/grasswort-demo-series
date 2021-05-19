@@ -1,11 +1,11 @@
-package birnarytree;
+package binarytree;
 
 /**
  * @author 🌺xuliangliang🌺
  * @Description
  * @Date 2021/5/18
  */
-public class BirnaryTreeProvider {
+public class BinaryTreeProvider {
 
     /**
      * 返回一个二叉树

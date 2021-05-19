@@ -1,14 +1,14 @@
-package birnarytree;
+package binarytree;
 
 /**
  * @author 🌺xuliangliang🌺
  * @Description 二叉树遍历[先序/中序/后序](递归)
  * @Date 2021/5/18
  */
-public class BirnaryTreeTraverseDemo1 {
+public class BinaryTreeTraverseDemo1 {
 
     public static void main(String[] args) {
-        Node tree = BirnaryTreeProvider.birnaryTree();
+        Node tree = BinaryTreeProvider.birnaryTree();
 
         System.out.println("先序 : ");
         pre(tree);
