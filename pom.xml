@@ -17,6 +17,7 @@
         <module>netty</module>
         <module>multi-thread</module>
         <module>algorithm</module>
+        <module>spring</module>
     </modules>
 
     <properties>
