@@ -24,5 +24,7 @@ public class CircularTest {
         CircularDependency002 circularDependency002 = context.getBean(CircularDependency002.class);
         System.out.println(circularDependency001);
         System.out.println(circularDependency002);
+        circularDependency001.doSomething();
+        circularDependency002.doSomething();
     }
 }

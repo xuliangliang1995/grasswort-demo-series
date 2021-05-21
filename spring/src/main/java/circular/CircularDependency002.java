@@ -12,4 +12,8 @@ import org.springframework.stereotype.Component;
 public class CircularDependency002 {
     @Autowired
     private CircularDependency001 circularDependency001;
+
+    public void doSomething() {
+        System.out.println(circularDependency001 != null);
+    }
 }

@@ -45,9 +45,7 @@ public class ZkDistributedLock implements Watcher, AsyncCallback.StringCallback,
         try {
             zk.delete(pathName, -1);
             //System.out.println(Thread.currentThread().getName() + "over work. ");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (KeeperException e) {
+        } catch (InterruptedException | KeeperException e) {
             e.printStackTrace();
         }
     }

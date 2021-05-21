@@ -13,6 +13,10 @@ import org.springframework.stereotype.Component;
 public class CircularDependency001 {
 
     @Autowired
-    @Lazy
+    //@Lazy
     private CircularDependency002 circularDependency002;
+
+    public void doSomething() {
+        System.out.println(circularDependency002 != null);
+    }
 }
