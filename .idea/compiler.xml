@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring" />
         <module name="multi-thread" />
+        <module name="java" />
         <module name="zookeeper" />
         <module name="io" />
         <module name="kafka" />

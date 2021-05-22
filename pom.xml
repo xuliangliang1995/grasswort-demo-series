@@ -18,6 +18,7 @@
         <module>multi-thread</module>
         <module>algorithm</module>
         <module>spring</module>
+        <module>java</module>
     </modules>
 
     <properties>
