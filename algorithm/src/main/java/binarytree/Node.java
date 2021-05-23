@@ -5,13 +5,13 @@ package binarytree;
  * @Description
  * @Date 2021/5/18
  */
-public class Node {
+public class Node<T> implements INode<T> {
 
-    private Object val;
+    private T val;
 
-    private Node left;
+    private Node<T> left;
 
-    private Node right;
+    private Node<T> right;
 
     @Override
     public String toString() {
@@ -21,31 +21,35 @@ public class Node {
     public Node() {
     }
 
-    public Node(Object val) {
+    public Node(T val) {
         this.val = val;
     }
 
-    public Object getVal() {
+    @Override
+    public T getVal() {
         return val;
     }
 
-    public void setVal(Object val) {
+    public void setVal(T val) {
         this.val = val;
     }
 
-    public Node getLeft() {
+    @Override
+    public Node<T> getLeft() {
         return left;
     }
 
-    public void setLeft(Node left) {
+    public void setLeft(Node<T> left) {
         this.left = left;
     }
 
-    public Node getRight() {
+    @Override
+    public Node<T> getRight() {
         return right;
     }
 
-    public void setRight(Node right) {
+    public void setRight(Node<T> right) {
         this.right = right;
     }
+
 }

@@ -20,6 +20,10 @@ public class BinaryTreeTierTraverseDemo {
      * @param head
      */
     private static void tierTraverse(Node head) {
+        if (head == null) {
+            return;
+        }
+
         Queue<Node> queue = new LinkedList<>();
         queue.add(head);
 
