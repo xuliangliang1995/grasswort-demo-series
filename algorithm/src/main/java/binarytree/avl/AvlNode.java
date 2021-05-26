@@ -1,4 +1,6 @@
-package binarytree;
+package binarytree.avl;
+
+import binarytree.INode;
 
 /**
  * @author 🌺xuliangliang🌺

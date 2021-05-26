@@ -1,4 +1,4 @@
-package binarytree;
+package binarytree.avl;
 
 /**
  * @author 🌺xuliangliang🌺
