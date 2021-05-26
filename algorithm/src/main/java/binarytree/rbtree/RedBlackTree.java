@@ -1,5 +1,7 @@
 package binarytree.rbtree;
 
+import binarytree.avl.AvlNode;
+
 /**
  * @author xuliangliang
  * @Description
@@ -11,6 +13,32 @@ public class RedBlackTree {
 
     public RbNode getRoot() {
         return root;
+    }
+
+    /**
+     * 查询元素,返回元素查询路径
+     * @param value
+     * @return
+     */
+    public int query(int value) {
+        int count = 1;
+        RbNode cur = root;
+
+        while (true) {
+            if (cur != null) {
+                if (value == cur.getValue()) {
+                    return count;
+                }
+                if (value < cur.getVal()) {
+                    cur = cur.getL();
+                } else {
+                    cur = cur.getR();
+                }
+            } else {
+                return count;
+            }
+            count++;
+        }
     }
 
     /**
