@@ -26,15 +26,15 @@ public class RedBlackTreeCheckUtil {
             // check 2
             return false;
         }
-        return proces(root).isValid();
+        return process(root).isValid();
     }
 
-    private static Info proces(RbNode node) {
+    private static Info process(RbNode node) {
         if (node == null) {
             return new Info(0, Color.BLACK, true);
         }
-        Info left = proces(node.getL());
-        Info right = proces(node.getR());
+        Info left = process(node.getL());
+        Info right = process(node.getR());
 
         boolean isValid = true;
 
