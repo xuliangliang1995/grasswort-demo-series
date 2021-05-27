@@ -19,5 +19,7 @@ public class RedBlackTreeTest {
             System.out.printf("查询 %d 需要 %d 步 \n", i, rbTree.query(i));
         }
 
+        System.out.println("是否红黑树 ： " + RedBlackTreeCheckUtil.isBlackRedTree(root));
+
     }
 }
