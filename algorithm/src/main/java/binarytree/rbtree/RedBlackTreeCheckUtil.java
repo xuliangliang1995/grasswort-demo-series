@@ -31,7 +31,7 @@ public class RedBlackTreeCheckUtil {
 
     private static Info process(RbNode node) {
         if (node == null) {
-            return new Info(0, Color.BLACK, true);
+            return new Info(0, Color.BLACK, true, null);
         }
         Info left = process(node.getL());
         Info right = process(node.getR());
@@ -51,9 +51,28 @@ public class RedBlackTreeCheckUtil {
             isValid = false;
         }
 
+        // 基本二叉查询树校验
+        if (left.getValue() != null && left.getValue() > node.getValue()) {
+            isValid = false;
+        }
+
+        if (right.getValue() != null && right.getValue() < node.getValue()) {
+            isValid = false;
+        }
+
+        // 旋转出错校验
+        if (node.getL() != null) {
+            assert node.getL().getP() == node;
+        }
+        if (node.getR() != null) {
+            assert node.getR().getP() == node;
+        }
+
+        assert node.getWeight() == 1;
+
         int height = left.height + (Color.BLACK == node.getColor() ? 1 : 0);
 
-        return new Info(height, node.getColor(), isValid);
+        return new Info(height, node.getColor(), isValid, node.getValue());
     }
 
 
@@ -61,11 +80,13 @@ public class RedBlackTreeCheckUtil {
         int height;
         Color color;
         boolean valid;
+        Integer value;
 
-        public Info(int height, Color color, boolean isValid) {
+        public Info(int height, Color color, boolean isValid, Integer value) {
             this.height = height;
             this.color = color;
             this.valid = isValid;
+            this.value = value;
         }
 
         public int getHeight() {
@@ -86,6 +107,14 @@ public class RedBlackTreeCheckUtil {
 
         public boolean isValid() {
             return valid;
+        }
+
+        public Integer getValue() {
+            return value;
+        }
+
+        public void setValue(Integer value) {
+            this.value = value;
         }
     }
 }

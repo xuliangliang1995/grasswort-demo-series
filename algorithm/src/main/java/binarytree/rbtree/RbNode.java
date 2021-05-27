@@ -19,6 +19,8 @@ public class RbNode implements INode<Integer> {
 
     private Integer value;
 
+    private Integer weight = 1;
+
     public Integer getValue() {
         return value;
     }
@@ -59,6 +61,14 @@ public class RbNode implements INode<Integer> {
         this.color = color;
     }
 
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
     @Override
     public Integer getVal() {
         return value;
@@ -72,5 +82,10 @@ public class RbNode implements INode<Integer> {
     @Override
     public INode<Integer> getRight() {
         return r;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 }
