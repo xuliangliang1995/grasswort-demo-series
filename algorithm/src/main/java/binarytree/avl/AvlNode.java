@@ -42,25 +42,37 @@ public class AvlNode implements INode<Integer> {
         if (! isBalanced) {
             if (lHeight > rHeight) {
                 AvlNode left = l;
+                AvlNode lRight = l.getR();
                 AvlNode parent = p;
-                this.setL(left.getR());
-                this.setP(left);
-                left.setR(this);
+
                 left.setP(parent);
                 if (parent != null) {
                     parent.setL(left);
                 }
+                left.setR(this);
+                this.setP(left);
+                this.setL(lRight);
+                if (lRight != null) {
+                    lRight.setP(this);
+                }
+
                 return balance();
             } else {
                 AvlNode right = r;
+                AvlNode rLeft = r.getL();
                 AvlNode parent = p;
-                this.setR(right.getL());
-                this.setP(right);
-                right.setL(this);
+
                 right.setP(parent);
                 if (parent != null) {
                     parent.setR(right);
                 }
+                right.setL(this);
+                this.setP(right);
+                this.setR(rLeft);
+                if (rLeft != null) {
+                    rLeft.setP(this);
+                }
+
                 return balance();
             }
         } else {
