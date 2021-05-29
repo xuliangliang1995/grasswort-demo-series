@@ -1,5 +1,7 @@
 package binarytree.avl;
 
+import binarytree.rbtree.RbNode;
+
 /**
  * @author 🌺xuliangliang🌺
  * @Description
@@ -18,24 +20,28 @@ public class AvlTree {
      * @param value
      * @return
      */
-    public int query(int value) {
+    public AvlNode query(int value) {
         int count = 1;
         AvlNode cur = head;
 
-        while (true) {
-            if (cur != null) {
-                if (value == cur.getValue()) {
-                    return count;
-                }
-                if (value < cur.getVal()) {
-                    cur = cur.getL();
+        try {
+            while (true) {
+                if (cur != null) {
+                    if (value == cur.getValue()) {
+                        return cur;
+                    }
+                    if (value < cur.getVal()) {
+                        cur = cur.getL();
+                    } else {
+                        cur = cur.getR();
+                    }
                 } else {
-                    cur = cur.getR();
+                    return null;
                 }
-            } else {
-                return count;
+                count++;
             }
-            count++;
+        } finally {
+            System.out.println("查询" + value + "需要" + count + "步");
         }
     }
 

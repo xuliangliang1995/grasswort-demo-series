@@ -18,7 +18,7 @@ public class AvlTreeTest {
         System.out.println(BinaryTreeIsBalancedDemo.isBalanced(tree.getHead()));
 
         for (int i = 1; i <= 1000 ; i++) {
-            System.out.printf("查询 %d 需要 %d 步 \n", i, tree.query(i));
+            tree.query(i);
         }
 
         System.out.println(AvlTreeCheckUtil.isAvlTree(tree.getHead()));
