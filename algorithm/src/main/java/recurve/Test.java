@@ -9,7 +9,5 @@ public class Test {
 
 
 
-    private static void move(int size, String from, String to, String other) {
 
-    }
 }
