@@ -1,4 +1,4 @@
-package recurve.hanoi;
+package recurve;
 
 /**
  * @author xuliangliang
