@@ -56,9 +56,10 @@ public class ReverseStackProblem {
      * @param stack
      */
     private static void printStack(Stack<Integer> stack) {
+        System.out.print("[栈底]");
         for (Integer integer : stack) {
             System.out.print(integer + ",");
         }
-        System.out.print("\n");
+        System.out.print("[栈顶]\n");
     }
 }
