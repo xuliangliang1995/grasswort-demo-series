@@ -40,7 +40,7 @@ public class StickerProblem {
         for (int i = 0; i < arr.length; i++) {
             stickers[i] = wordFrequencyStatistics(arr[i]);
         }
-        int stickersCount = process(stickers, str, new HashMap<>());
+        int stickersCount = process(stickers, str, new HashMap<>(str.length()));
         return stickersCount == Integer.MAX_VALUE ? -1 : stickersCount;
     }
 
