@@ -24,7 +24,15 @@ public class MonotonousStackProblem003 {
         int[] arr3 = {0, 1, 1, 1, 1};
         int[] arr4 = {1, 1, 1, 1, 1};
         int[][] arr = {arr1, arr2, arr3, arr4};
+        System.out.println(func1(arr));
+    }
 
+    /**
+     * O(n)
+     * @param arr
+     * @return
+     */
+    private static int func1(int[][] arr) {
         int q = 0;
         for (int i = 0; i < arr.length; i++) {
             int max = func2(arr[i]);
@@ -38,7 +46,7 @@ public class MonotonousStackProblem003 {
                 }
             }
         }
-        System.out.println(q);
+        return q;
     }
 
     /**
