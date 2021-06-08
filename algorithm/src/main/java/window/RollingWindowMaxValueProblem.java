@@ -1,4 +1,4 @@
-package others;
+package window;
 
 import java.util.LinkedList;
 
