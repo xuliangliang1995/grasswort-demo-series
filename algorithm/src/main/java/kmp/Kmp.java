@@ -1,5 +1,7 @@
 package kmp;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 /**
  * @author 🌺xuliangliang🌺
  * @Description 经典字符串匹配算法
@@ -11,6 +13,14 @@ public class Kmp {
         System.out.println(indexOf("abcddkdlsdk", "dkd"));
         System.out.println(indexOf("hahah", "a"));
         System.out.println(indexOf("a", "a"));
+
+        // 再随机生成 1000 组数据进行测试
+        for (int i = 0; i < 1000; i++) {
+            String s1 = RandomStringUtils.randomAlphabetic(20);
+            String s2 = RandomStringUtils.randomAlphabetic(5);
+            assert s1.indexOf(s2) == indexOf(s1, s2);
+        }
+
     }
 
     /**
