@@ -42,14 +42,12 @@ public class Kmp {
         while (x < arr1.length && y < arr2.length) {
             if (arr1[x] != arr2[y]) {
                 y = nextArray[y];
-                if (y < 0) {
-                    y++;
-                    x++;
+                if (y >= 0) {
+                    continue;
                 }
-            } else {
-                x++;
-                y++;
             }
+            x++;
+            y++;
         }
         return y == arr2.length ? (x - s2.length()) : -1;
     }
