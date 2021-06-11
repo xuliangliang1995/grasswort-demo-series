@@ -12,15 +12,15 @@ public class Manacher {
      * @param args
      */
     public static void main(String[] args) {
-        printAllManacher("gggg");
-        printAllManacher("abadefgfedaba");
+        printManacher("gggg");
+        printManacher("abadefgfedaba");
     }
 
     /**
-     * 打印所有回文字符串
+     * 打印回文字符串(并非所有)
      * @param s
      */
-    private static void printAllManacher(String s) {
+    private static void printManacher(String s) {
         System.out.println("==========" + s + "=========");
         int[] radiusArr = generateManacherRadiusArr(toManacherStr(s.toCharArray()));
         for (int i = 0; i < radiusArr.length; i++) {
