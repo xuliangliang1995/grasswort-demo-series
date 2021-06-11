@@ -1,5 +1,7 @@
 package manacher;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 /**
  * @author 🌺xuliangliang🌺
  * @Description 回文字符串查找算法
@@ -12,8 +14,8 @@ public class Manacher {
      * @param args
      */
     public static void main(String[] args) {
-        String s = "gggg";
-        printAllPalindrome(s);
+        printAllPalindrome("gggg");
+        printAllPalindrome("abadefgfedaba");
     }
 
     /**
@@ -21,6 +23,7 @@ public class Manacher {
      * @param s
      */
     private static void printAllPalindrome(String s) {
+        System.out.println("==========" + s + "=========");
         int[] radiusArr = generatePalindromeRadiusArr(toManacherStr(s.toCharArray()));
         for (int i = 0; i < radiusArr.length; i++) {
             int radius = radiusArr[i];
