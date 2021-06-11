@@ -1,7 +1,5 @@
 package manacher;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 /**
  * @author 🌺xuliangliang🌺
  * @Description 回文字符串查找算法
@@ -14,17 +12,17 @@ public class Manacher {
      * @param args
      */
     public static void main(String[] args) {
-        printAllPalindrome("gggg");
-        printAllPalindrome("abadefgfedaba");
+        printAllManacher("gggg");
+        printAllManacher("abadefgfedaba");
     }
 
     /**
      * 打印所有回文字符串
      * @param s
      */
-    private static void printAllPalindrome(String s) {
+    private static void printAllManacher(String s) {
         System.out.println("==========" + s + "=========");
-        int[] radiusArr = generatePalindromeRadiusArr(toManacherStr(s.toCharArray()));
+        int[] radiusArr = generateManacherRadiusArr(toManacherStr(s.toCharArray()));
         for (int i = 0; i < radiusArr.length; i++) {
             int radius = radiusArr[i];
             if (radius > 1) {
@@ -40,7 +38,7 @@ public class Manacher {
      * @param arr
      * @return
      */
-    private static int[] generatePalindromeRadiusArr(char[] arr) {
+    private static int[] generateManacherRadiusArr(char[] arr) {
         int[] radiusArr = new int[arr.length];
         if (arr.length == 0) {
             return radiusArr;
