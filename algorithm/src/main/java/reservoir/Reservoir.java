@@ -10,9 +10,10 @@ import java.util.Random;
 public class Reservoir {
 
     public static void main(String[] args) {
-        int numberCount = 200;
+        int numberCount = 100;
+        int testCount = 50_0000;
         int[] numbers = new int[numberCount + 1];
-        for (int i = 0; i < 500000; i++) {
+        for (int i = 0; i < testCount; i++) {
             Reservoir reservoir = new Reservoir(10);
             for (int j = 1; j <= numberCount; j++) {
                 reservoir.via(j);
