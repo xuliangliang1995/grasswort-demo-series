@@ -1,10 +1,8 @@
 package segmenttree;
 
-import sort.util.IntArrayUtil;
-
 /**
  * @author 🌺xuliangliang🌺
- * @Description 线段树
+ * @Description 线段树 (O(log^n))
  * @Date 2021/6/12
  */
 public class SegmentTree {
