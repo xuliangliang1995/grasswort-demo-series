@@ -7,7 +7,7 @@ import binarytree.INode;
  * @Description
  * @Date 2021/5/26
  */
-public class RbNode implements INode<Integer> {
+public class RbNode implements INode<Long> {
 
     private RbNode l;
 
@@ -17,15 +17,15 @@ public class RbNode implements INode<Integer> {
 
     private Color color;
 
-    private Integer value;
+    private Long value;
 
     private Integer weight = 1;
 
-    public Integer getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 
@@ -70,17 +70,17 @@ public class RbNode implements INode<Integer> {
     }
 
     @Override
-    public Integer getVal() {
+    public Long getVal() {
         return value;
     }
 
     @Override
-    public INode<Integer> getLeft() {
+    public INode<Long> getLeft() {
         return l;
     }
 
     @Override
-    public INode<Integer> getRight() {
+    public INode<Long> getRight() {
         return r;
     }
 

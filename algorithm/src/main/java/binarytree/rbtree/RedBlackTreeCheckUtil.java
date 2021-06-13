@@ -80,9 +80,9 @@ public class RedBlackTreeCheckUtil {
         int height;
         Color color;
         boolean valid;
-        Integer value;
+        Long value;
 
-        public Info(int height, Color color, boolean isValid, Integer value) {
+        public Info(int height, Color color, boolean isValid, Long value) {
             this.height = height;
             this.color = color;
             this.valid = isValid;
@@ -109,11 +109,11 @@ public class RedBlackTreeCheckUtil {
             return valid;
         }
 
-        public Integer getValue() {
+        public Long getValue() {
             return value;
         }
 
-        public void setValue(Integer value) {
+        public void setValue(Long value) {
             this.value = value;
         }
     }

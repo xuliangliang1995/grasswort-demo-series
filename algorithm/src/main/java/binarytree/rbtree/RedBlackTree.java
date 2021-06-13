@@ -20,7 +20,7 @@ public class RedBlackTree {
      * @param value
      * @return
      */
-    public RbNode query(int value) {
+    public RbNode query(long value) {
         int count = 1;
         try {
             RbNode cur = root;
@@ -49,7 +49,7 @@ public class RedBlackTree {
      * @param value
      * @return 返回插入的新节点
      */
-    public RbNode addNode(int value) {
+    public RbNode addNode(long value) {
         RbNode newNode = new RbNode();
         newNode.setValue(value);
         newNode.setColor(Color.RED);
@@ -95,7 +95,7 @@ public class RedBlackTree {
      * 删除节点
      * @param val
      */
-    public void deleteNode(int val) {
+    public void deleteNode(long val) {
         RbNode delNode = query(val);
         System.out.println("查询结果 : " + delNode);
         if (delNode != null) {
@@ -309,6 +309,7 @@ public class RedBlackTree {
                 cursor.getP().getP().setColor(Color.RED);
                 rightRotation(cursor.getP().getP());
                 cursor = cursor.getP();
+                break;
             } else {
                 // 和 pIsLeft 一样，只是 left 变 right , right 变 left
                 boolean curIsLeft = cursor == cursor.getP().getL();
@@ -320,6 +321,7 @@ public class RedBlackTree {
                 cursor.getP().getP().setColor(Color.RED);
                 leftRotation(cursor.getP().getP());
                 cursor = cursor.getP();
+                break;
             }
         }
         root.setColor(Color.BLACK);
