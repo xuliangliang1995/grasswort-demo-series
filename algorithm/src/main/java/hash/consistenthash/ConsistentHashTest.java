@@ -39,7 +39,7 @@ public class ConsistentHashTest {
         startCluster(bookStorageServer);
 
         // 添加 100 条数据
-        insertData(bookStorageServer, 10);
+        insertData(bookStorageServer, 100);
         testSearch(bookStorageServer);
         printMachineStatus();
 
@@ -66,7 +66,7 @@ public class ConsistentHashTest {
                 break;
             }
             // 添加 10 条数据
-            insertData(bookStorageServer, 10);
+            insertData(bookStorageServer, 100);
 
             // 查询测试
             testSearch(bookStorageServer);
