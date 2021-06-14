@@ -37,6 +37,12 @@ public class SkipListTest {
         TimeUnit.SECONDS.sleep(5);
 
         for (int i = 0; i < testCount; i++) {
+            System.out.println(skipList.get(i));
+        }
+
+        TimeUnit.SECONDS.sleep(5);
+
+        for (int i = 0; i < testCount; i++) {
             skipList.remove(i);
             System.out.println("size : " + skipList.size());
             System.out.println("level : " + skipList.level());
