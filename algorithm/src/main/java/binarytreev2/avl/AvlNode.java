@@ -7,15 +7,17 @@ import binarytreev2.BTNode;
  * @Description avl 节点
  * @Date 2021/6/15
  */
-public class AvlNode<K, V> extends BTNode {
+public class AvlNode<K extends Comparable<K>, V> extends BTNode<K, V> {
     /**
      * 平衡因子（树高）
      */
     private Integer height;
 
-    public AvlNode(Comparable key, Object value) {
+    public AvlNode(K key, V value) {
         super(key, value);
+        this.height = 1;
     }
+
 
     public Integer getHeight() {
         return height;

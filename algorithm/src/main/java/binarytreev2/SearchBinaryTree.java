@@ -7,9 +7,13 @@ package binarytreev2;
  */
 public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K, V> {
 
-    private BTNode<K, V> head;
+    protected BTNode<K, V> head;
 
-    private int size = 0;
+    protected int size = 0;
+
+    public BTNode<K, V> getHead() {
+        return head;
+    }
 
     @Override
     public V put(K key, V value) {
@@ -23,7 +27,7 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
         }
         size++;
 
-        BTNode<K, V> newNode = new BTNode<>(key, value);
+        BTNode<K, V> newNode = constructor(key, value);
 
         if (node == null) {
             head = newNode;
@@ -37,6 +41,9 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
         } else {
             node.setLeft(newNode);
         }
+
+        // 扩展
+        postInsert(newNode);
         return null;
     }
 
@@ -73,6 +80,32 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
 
 
     /**
+     * 节点构造扩展接口
+     * @param key
+     * @param value
+     * @return
+     */
+    protected BTNode<K, V> constructor(K key, V value) {
+        return new BTNode<>(key, value);
+    }
+    /**
+     * 添加节点扩展接口
+     * @param newNode
+     */
+    protected void postInsert(BTNode<K, V> newNode) {
+        // do nothing
+    }
+
+    /**
+     * 删除节点扩展接口
+     * @param parentNode
+     */
+    protected void postRemove(BTNode<K, V> parentNode) {
+        // do nothing
+    }
+
+
+    /**
      * 删除节点
      * @param node
      * @return
@@ -105,7 +138,7 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
             } else {
                 head = replaceNode;
             }
-
+            postRemove(parent);
         }
         return removedValue;
     }
