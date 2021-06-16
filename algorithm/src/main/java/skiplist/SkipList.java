@@ -1,5 +1,7 @@
 package skiplist;
 
+import binarytree.SortedMap;
+
 import java.util.*;
 
 /**
@@ -7,7 +9,7 @@ import java.util.*;
  * @Description
  * @Date 2021/6/14
  */
-public class SkipList<K extends Comparable<K>, V> {
+public class SkipList<K extends Comparable<K>, V> implements SortedMap<K, V> {
 
     private final double ODDS = 0.5;
 
@@ -35,6 +37,7 @@ public class SkipList<K extends Comparable<K>, V> {
      * @param key
      * @return
      */
+    @Override
     public V get(K key) {
         SkipListNode<K, V> lessNode = mostRightLessNodeInTree(key);
         SkipListNode<K, V> nextNode = lessNode.nextNodes.get(0);
@@ -46,6 +49,7 @@ public class SkipList<K extends Comparable<K>, V> {
      * @param key
      * @param value
      */
+    @Override
     public V put(K key, V value) {
         SkipListNode<K, V> lessNode = mostRightLessNodeInTree(key);
         if (lessNode != null
@@ -84,6 +88,7 @@ public class SkipList<K extends Comparable<K>, V> {
      * 移除
      * @param key
      */
+    @Override
     public V remove(K key) {
         int traversedLevel = level;
         SkipListNode<K, V> lessNode = head;
@@ -114,13 +119,14 @@ public class SkipList<K extends Comparable<K>, V> {
      * @param key
      * @return
      */
+    @Override
     public boolean containsKey(K key) {
         SkipListNode<K, V> lessNode = mostRightLessNodeInTree(key);
         return lessNode.nextNodes.get(0) != null
                 && lessNode.nextNodes.get(0).isKeyEquals(key);
     }
 
-
+    @Override
     public int size() {
         return size;
     }
