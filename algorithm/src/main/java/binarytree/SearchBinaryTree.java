@@ -182,7 +182,7 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
      * 左旋
      * @param node
      */
-    protected void leftRotate(BTNode<K, V> node) {
+    protected BTNode<K, V> leftRotate(BTNode<K, V> node) {
         BTNode<K, V> p = node.getParent();
         BTNode<K, V> right = node.getRight();
         BTNode<K, V> rightLeft = right.getLeft();
@@ -206,6 +206,7 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
         } else {
             head = right;
         }
+        return right;
     }
 
 
@@ -213,7 +214,7 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
      * 右旋
      * @param node
      */
-    protected void rightRotate(BTNode<K, V> node) {
+    protected BTNode<K, V> rightRotate(BTNode<K, V> node) {
         BTNode<K, V> p = node.getParent();
         BTNode<K, V> left = node.getLeft();
         BTNode<K, V> leftRight = left.getRight();
@@ -237,6 +238,7 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
         } else {
             head = left;
         }
+        return left;
     }
 
 }

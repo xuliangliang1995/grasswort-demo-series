@@ -74,9 +74,10 @@ public class AvlTree<K extends Comparable<K>, V> extends SearchBinaryTree<K, V> 
      * @param node
      */
     @Override
-    protected void leftRotate(BTNode<K, V> node) {
-        super.leftRotate(node);
+    protected BTNode<K, V> leftRotate(BTNode<K, V> node) {
+        BTNode<K, V> topoHead = super.leftRotate(node);
         regulateHeight((AvlNode<K, V>) node);
+        return topoHead;
     }
 
 
@@ -84,9 +85,10 @@ public class AvlTree<K extends Comparable<K>, V> extends SearchBinaryTree<K, V> 
      * 右旋
      * @param node
      */
-    protected void rightRotate(BTNode<K, V> node) {
-        super.rightRotate(node);
+    protected BTNode<K, V> rightRotate(BTNode<K, V> node) {
+        BTNode<K, V> topoHead = super.rightRotate(node);
         regulateHeight((AvlNode<K, V>) node);
+        return topoHead;
     }
 
 
