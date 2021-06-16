@@ -31,6 +31,7 @@
     * [线段树](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/algorithm/src/main/java/segmenttree)
     * [位运算](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/algorithm/src/main/java/bit)
     * [窗口最大/最小值](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/algorithm/src/main/java/window)
+    * [并查集](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/algorithm/src/main/java/unionset)
 * [**Redis**](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/redis)
     * [Redis 分布式锁](https://github.com/xuliangliang1995/grasswort-demo-series/blob/master/redis/src/main/java/jedis/lock/RedisReentrantLock.java)
     * [阻塞单播队列](https://github.com/xuliangliang1995/grasswort-demo-series/blob/master/redis/src/main/java/jedis/operation/BlockedUnicastQueueDemo.java)
