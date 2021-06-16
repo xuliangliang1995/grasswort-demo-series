@@ -58,9 +58,11 @@ public class SBTreeTest {
             IntArrayUtil.swap(otherKeys, i, random.nextInt(testCount));
         }
 
+        size = sbt.size();
         for (int i = 0; i < testCount; i++) {
             sbt.put(otherKeys[i], null);
             assertTrue(isSBT(sbt));
+            assertEquals(++size, sbt.size());
         }
     }
 
