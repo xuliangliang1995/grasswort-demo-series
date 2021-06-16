@@ -1,101 +1,107 @@
 package binarytree.avl;
 
-import binarytree.rbtree.RbNode;
+import binarytree.BTNode;
+import binarytree.SearchBinaryTree;
 
 /**
- * @author 🌺xuliangliang🌺
- * @Description
- * @Date 2021/5/23
+ * @author xuliangliang
+ * @Description avl tree
+ * @Date 2021/6/15
  */
-public class AvlTree {
+public class AvlTree<K extends Comparable<K>, V> extends SearchBinaryTree<K, V> {
 
-    private AvlNode head;
+    @Override
+    protected BTNode<K, V> constructor(K key, V value) {
+        return new AvlNode<>(key, value);
+    }
 
-    public AvlNode getHead() {
-        return head;
+    @Override
+    protected void postInsert(BTNode<K, V> newNode) {
+        regulateHeight((AvlNode<K, V>) newNode);
+        balance((AvlNode<K, V>) newNode);
+    }
+
+    @Override
+    protected void postRemove(BTNode<K, V> parentNode) {
+        regulateHeight((AvlNode<K, V>) parentNode);
+        balance((AvlNode<K, V>) parentNode);
     }
 
     /**
-     * 查询元素,返回元素查询路径
-     * @param value
-     * @return
+     * 平衡
+     * @param node
      */
-    public AvlNode query(int value) {
-        int count = 1;
-        AvlNode cur = head;
-
-        try {
-            while (true) {
-                if (cur != null) {
-                    if (value == cur.getValue()) {
-                        return cur;
-                    }
-                    if (value < cur.getVal()) {
-                        cur = cur.getL();
-                    } else {
-                        cur = cur.getR();
-                    }
-                } else {
-                    return null;
-                }
-                count++;
-            }
-        } finally {
-            System.out.println("查询" + value + "需要" + count + "步");
-        }
-    }
-
-    /**
-     * 添加节点
-     * @param value
-     */
-    public void addNode(int value) {
-        AvlNode newNode = new AvlNode(value);
-        if (head == null) {
-            head = newNode;
-            return;
-        }
-
-        AvlNode cur = head;
-        while (true) {
-            int curVal = cur.getValue();
-            if (value < curVal) {
-                // 往左
-                AvlNode leftNode = cur.getL();
-                if (leftNode == null) {
-                    cur.setL(newNode);
-                    newNode.setP(cur);
-                    head = cur.balance();
-                    return;
-                }
-                cur = leftNode;
-            } else if (value > curVal) {
-                // 往右
-                AvlNode rightNode = cur.getR();
-                if (rightNode == null) {
-                    cur.setR(newNode);
-                    newNode.setP(cur);
-                    head = cur.balance();
-                    return;
-                }
-                cur = rightNode;
-            } else {
-                System.out.println("ignore node " + value);
-                return;
-            }
-        }
-    }
-
-    public void print() {
-        mid(head);
-    }
-
-    private static void mid(AvlNode node) {
+    private void balance(AvlNode<K, V> node) {
         if (node == null) {
             return;
         }
-        mid(node.getL());
-        System.out.println(node);
-        mid(node.getR());
+        AvlNode<K, V> parent = (AvlNode<K, V>) node.getParent();
+        AvlNode<K, V> left = (AvlNode<K, V>) node.getLeft();
+        AvlNode<K, V> right = (AvlNode<K, V>) node.getRight();
+        int leftHeight = left != null ? left.getHeight() : 0;
+        int rightHeight = right != null ? right.getHeight() : 0;
+        int diffHeight = Math.abs(leftHeight - rightHeight);
+        if (diffHeight > 1) {
+            if (leftHeight > rightHeight) {
+                // LL or LR
+                int llHeight = left.getLeft() != null ? ((AvlNode<K, V>)left.getLeft()).getHeight() : 0;
+                int lrHeight = left.getRight() != null ? ((AvlNode<K, V>)left.getRight()).getHeight() : 0;
+                boolean isLL = llHeight >= lrHeight;
+                if (isLL) {
+                    rightRotate(node);
+                } else {
+                    leftRotate(left);
+                    rightRotate(node);
+                }
+            } else {
+                // RR or RL
+                int rlHeight = right.getLeft() != null ? ((AvlNode<K, V>)right.getLeft()).getHeight() : 0;
+                int rrHeight = right.getRight() != null ? ((AvlNode<K, V>)right.getRight()).getHeight() : 0;
+                boolean isRR = rrHeight >= rlHeight;
+                if (isRR) {
+                    leftRotate(node);
+                } else {
+                    rightRotate(right);
+                    leftRotate(node);
+                }
+            }
+        }
+        balance(parent);
     }
+
+    /**
+     * 左旋
+     * @param node
+     */
+    @Override
+    protected void leftRotate(BTNode<K, V> node) {
+        super.leftRotate(node);
+        regulateHeight((AvlNode<K, V>) node);
+    }
+
+
+    /**
+     * 右旋
+     * @param node
+     */
+    protected void rightRotate(BTNode<K, V> node) {
+        super.rightRotate(node);
+        regulateHeight((AvlNode<K, V>) node);
+    }
+
+
+    /**
+     * 校正节点高度(确保子节点高度是正确的)
+     * @param node
+     */
+    private void regulateHeight(AvlNode<K, V> node) {
+        if (node == null) {
+            return;
+        }
+        int leftHeight = node.getLeft() != null ? ((AvlNode<K, V>)node.getLeft()).getHeight() : 0;
+        int rightHeight = node.getRight() != null ? ((AvlNode<K, V>)node.getRight()).getHeight() : 0;
+        node.setHeight(Math.max(leftHeight, rightHeight) + 1);
+        regulateHeight((AvlNode<K, V>) node.getParent());
+    }
+
 }

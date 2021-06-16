@@ -1,4 +1,4 @@
-package binarytree;
+package hash.rbtree;
 
 /**
  * @author 🌺xuliangliang🌺

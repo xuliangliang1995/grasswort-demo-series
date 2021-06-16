@@ -1,8 +1,8 @@
 package hash.consistenthash;
 
-import binarytree.rbtree.RbNode;
-import binarytree.rbtree.RedBlackTree;
-import binarytree.rbtree.RedBlackTreeCheckUtil;
+import hash.rbtree.RbNode;
+import hash.rbtree.RedBlackTree;
+import hash.rbtree.RedBlackTreeCheckUtil;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package binarytreev2;
+package binarytree;
 
 /**
  * @author xuliangliang

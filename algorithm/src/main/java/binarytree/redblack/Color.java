@@ -1,10 +1,10 @@
-package binarytree.rbtree;
+package binarytree.redblack;
 
 /**
  * @author xuliangliang
  * @Description
- * @Date 2021/5/26
+ * @Date 2021/6/16
  */
 public enum Color {
-    RED,BLACK;
+    RED, BLACK;
 }

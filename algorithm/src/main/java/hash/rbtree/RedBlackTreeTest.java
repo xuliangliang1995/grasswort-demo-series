@@ -1,4 +1,4 @@
-package binarytree.rbtree;
+package hash.rbtree;
 
 import sort.util.IntArrayUtil;
 

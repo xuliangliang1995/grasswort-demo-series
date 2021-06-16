@@ -1,4 +1,6 @@
-package binarytree;
+package binarytree.traverse;
+
+import binarytree.BTNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -10,25 +12,20 @@ import java.util.Queue;
  */
 public class BinaryTreeTierTraverseDemo {
 
-    public static void main(String[] args) {
-        Node binaryTree = BinaryTreeProvider.binaryTree();
-        tierTraverse(binaryTree);
-    }
-
     /**
      * 按层遍历
      * @param head
      */
-    private static void tierTraverse(Node head) {
+    private static void tierTraverse(BTNode head) {
         if (head == null) {
             return;
         }
 
-        Queue<Node> queue = new LinkedList<>();
+        Queue<BTNode> queue = new LinkedList<>();
         queue.add(head);
 
         while (! queue.isEmpty()) {
-            Node cur = queue.poll();
+            BTNode cur = queue.poll();
             System.out.println(cur);
             if (cur.getLeft() != null) {
                 queue.add(cur.getLeft());

@@ -1,6 +1,4 @@
-package binarytree.rbtree;
-
-import binarytree.avl.AvlNode;
+package hash.rbtree;
 
 /**
  * @author xuliangliang

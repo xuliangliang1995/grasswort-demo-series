@@ -1,4 +1,6 @@
-package binarytree;
+package binarytree.traverse;
+
+import binarytree.BTNode;
 
 import java.util.Stack;
 
@@ -9,25 +11,12 @@ import java.util.Stack;
  */
 public class BinaryTreeTraverseDemo2 {
 
-    public static void main(String[] args) {
-        Node binaryTree = BinaryTreeProvider.binaryTree();
-
-        System.out.println("先序 : ");
-        pre(binaryTree);
-
-        System.out.println("中序 : ");
-        mid(binaryTree);
-
-        System.out.println("后序 : ");
-        post(binaryTree);
-    }
-
     /**
      * 先序（头左右）
      * @param cur
      */
-    private static void pre(Node cur) {
-        Stack<Node> stack = new Stack<>();
+    private static void pre(BTNode cur) {
+        Stack<BTNode> stack = new Stack<>();
         stack.push(cur);
 
         while (!stack.isEmpty()) {
@@ -46,8 +35,8 @@ public class BinaryTreeTraverseDemo2 {
      * 中序（左头右）
      * @param cur
      */
-    private static void mid(Node cur) {
-        Stack<Node> stack = new Stack<>();
+    private static void mid(BTNode cur) {
+        Stack<BTNode> stack = new Stack<>();
         while (cur != null) {
             stack.push(cur);
             cur = cur.getLeft();
@@ -69,9 +58,9 @@ public class BinaryTreeTraverseDemo2 {
      * 后序（左右头）（头右左 + 反转）
      * @param cur
      */
-    private static void post(Node cur) {
-        Stack<Node> stack = new Stack<>();
-        Stack<Node> stack1 = new Stack<>();
+    private static void post(BTNode cur) {
+        Stack<BTNode> stack = new Stack<>();
+        Stack<BTNode> stack1 = new Stack<>();
         stack.push(cur);
 
         while (! stack.isEmpty()) {

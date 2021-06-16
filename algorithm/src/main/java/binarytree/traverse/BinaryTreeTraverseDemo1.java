@@ -1,4 +1,6 @@
-package binarytree;
+package binarytree.traverse;
+
+import binarytree.BTNode;
 
 /**
  * @author 🌺xuliangliang🌺
@@ -7,24 +9,11 @@ package binarytree;
  */
 public class BinaryTreeTraverseDemo1 {
 
-    public static void main(String[] args) {
-        Node tree = BinaryTreeProvider.binaryTree();
-
-        System.out.println("先序 : ");
-        pre(tree);
-
-        System.out.println("中序 : ");
-        mid(tree);
-
-        System.out.println("后序 : ");
-        post(tree);
-    }
-
     /**
      * 先序
      * @param node
      */
-    private static void pre(Node node) {
+    private static void pre(BTNode node) {
         if (node == null) {
             return;
         }
@@ -37,7 +26,7 @@ public class BinaryTreeTraverseDemo1 {
      * 中序
      * @param node
      */
-    private static void mid(Node node) {
+    private static void mid(BTNode node) {
         if (node == null) {
             return;
         }
@@ -50,7 +39,7 @@ public class BinaryTreeTraverseDemo1 {
      * 后序
      * @param node
      */
-    private static void post(Node node) {
+    private static void post(BTNode node) {
         if (node == null) {
             return;
         }

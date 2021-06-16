@@ -1,6 +1,4 @@
-package binarytree.rbtree;
-
-import binarytree.INode;
+package hash.rbtree;
 
 /**
  * @author xuliangliang

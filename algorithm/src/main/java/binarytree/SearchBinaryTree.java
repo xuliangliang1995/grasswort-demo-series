@@ -1,4 +1,4 @@
-package binarytreev2;
+package binarytree;
 
 /**
  * @author xuliangliang
@@ -31,17 +31,15 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
 
         if (node == null) {
             head = newNode;
-            return null;
-        }
-
-        newNode.setParent(node);
-
-        if (node.isLessThan(key)) {
-            node.setRight(newNode);
         } else {
-            node.setLeft(newNode);
-        }
+            newNode.setParent(node);
 
+            if (node.isLessThan(key)) {
+                node.setRight(newNode);
+            } else {
+                node.setLeft(newNode);
+            }
+        }
         // 扩展
         postInsert(newNode);
         return null;
@@ -178,6 +176,67 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
             successor = successor.getLeft();
         }
         return successor;
+    }
+
+    /**
+     * 左旋
+     * @param node
+     */
+    protected void leftRotate(BTNode<K, V> node) {
+        BTNode<K, V> p = node.getParent();
+        BTNode<K, V> right = node.getRight();
+        BTNode<K, V> rightLeft = right.getLeft();
+
+        node.setRight(rightLeft);
+        if (rightLeft != null) {
+            rightLeft.setParent(node);
+        }
+
+        node.setParent(right);
+        right.setLeft(node);
+        right.setParent(p);
+
+        if (p != null) {
+            boolean nodeIsLeft = p.getLeft() == node;
+            if (nodeIsLeft) {
+                p.setLeft(right);
+            } else {
+                p.setRight(right);
+            }
+        } else {
+            head = right;
+        }
+    }
+
+
+    /**
+     * 右旋
+     * @param node
+     */
+    protected void rightRotate(BTNode<K, V> node) {
+        BTNode<K, V> p = node.getParent();
+        BTNode<K, V> left = node.getLeft();
+        BTNode<K, V> leftRight = left.getRight();
+
+        node.setLeft(leftRight);
+        if (leftRight != null) {
+            leftRight.setParent(node);
+        }
+
+        node.setParent(left);
+        left.setRight(node);
+        left.setParent(p);
+
+        if (p != null) {
+            boolean nodeIsLeft = p.getLeft() == node;
+            if (nodeIsLeft) {
+                p.setLeft(left);
+            } else {
+                p.setRight(left);
+            }
+        } else {
+            head = left;
+        }
     }
 
 }

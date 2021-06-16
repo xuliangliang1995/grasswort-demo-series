@@ -1,7 +1,7 @@
-package binarytreev2.test;
+package binarytree.test;
 
-import binarytreev2.avl.AvlNode;
-import binarytreev2.avl.AvlTree;
+import binarytree.avl.AvlNode;
+import binarytree.avl.AvlTree;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.RepeatedTest;
 import sort.util.IntArrayUtil;
@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Description
  * @Date 2021/6/15
  */
-public class AvlTreeTestUtil {
+public class AvlTreeTest {
 
-    @RepeatedTest(100)
+    @RepeatedTest(1000)
     public void test() {
         AvlTree<Integer, String> avlTree = new AvlTree<>();
         int testCount = 100;

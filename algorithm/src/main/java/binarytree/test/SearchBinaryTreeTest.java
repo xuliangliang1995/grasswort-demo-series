@@ -1,6 +1,6 @@
-package binarytreev2.test;
+package binarytree.test;
 
-import binarytreev2.SearchBinaryTree;
+import binarytree.SearchBinaryTree;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.RepeatedTest;
 import sort.util.IntArrayUtil;
@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Description
  * @Date 2021/6/15
  */
-public class SearchBinaryTreeTestUtil {
+public class SearchBinaryTreeTest {
 
-    @RepeatedTest(100)
+    @RepeatedTest(1000)
     public void test() {
         SearchBinaryTree<Integer, String> searchBinaryTree = new SearchBinaryTree<>();
         int testCount = 100;
