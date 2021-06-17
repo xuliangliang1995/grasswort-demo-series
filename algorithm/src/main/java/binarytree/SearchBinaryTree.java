@@ -175,6 +175,9 @@ public class SearchBinaryTree<K extends Comparable<K>, V> implements SortedMap<K
         while (successor != null && successor.getLeft() != null) {
             successor = successor.getLeft();
         }
+        if (successor == null) {
+            successor = node.getParent().isMoreThan(node.getKey()) ? node.getParent() : null;
+        }
         return successor;
     }
 
