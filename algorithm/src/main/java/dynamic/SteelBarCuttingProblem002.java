@@ -84,7 +84,11 @@ public class SteelBarCuttingProblem002 {
                 continue;
             }
             int[] aArrBak = ArrayUtils.clone(aArr);
+            int[] planBak = ArrayUtils.clone(plan);
             for (int j = 0; j < aArrBak.length; j++) {
+                if (aArrBak[j] == 0) {
+                    planBak[j] = 0;
+                }
                 aArrBak[j] = Math.max(aArrBak[j] - plan[j], 0);
             }
             String after = serializeArr(aArrBak);
@@ -92,7 +96,7 @@ public class SteelBarCuttingProblem002 {
             int subQ = 1 + process(aArrBak, plans, cache, cutRecord);
             if (subQ < q) {
                 q = subQ;
-                cutRecord.recordPlan(key, after, plan);
+                cutRecord.recordPlan(key, after, planBak);
             }
         }
 
