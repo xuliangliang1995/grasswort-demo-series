@@ -23,7 +23,7 @@ public class ClientDemo {
         socket.setTcpNoDelay(true);
 
         // bind()
-        SocketAddress socketAddress = new InetSocketAddress("localhost", Ports.CLIENT_PORT_001);
+        SocketAddress socketAddress = new InetSocketAddress("localhost", Ports.CLIENT_PORT_002);
         socket.bind(socketAddress);
 
         // connect()
