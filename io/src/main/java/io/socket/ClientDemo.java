@@ -1,5 +1,7 @@
 package io.socket;
 
+import constants.Ports;
+
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -21,11 +23,11 @@ public class ClientDemo {
         socket.setTcpNoDelay(true);
 
         // bind()
-        SocketAddress socketAddress = new InetSocketAddress("localhost", 8080);
+        SocketAddress socketAddress = new InetSocketAddress("localhost", Ports.CLIENT_PORT_001);
         socket.bind(socketAddress);
 
         // connect()
-        SocketAddress serverAddress = new InetSocketAddress("localhost", 10000);
+        SocketAddress serverAddress = new InetSocketAddress("localhost", Ports.SERVER_PORT);
         socket.connect(serverAddress);
 
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
