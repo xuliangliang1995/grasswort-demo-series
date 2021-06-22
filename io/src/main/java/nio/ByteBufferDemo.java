@@ -49,5 +49,9 @@ public class ByteBufferDemo {
             System.out.println((char) b);
         }
 
+        // 去写
+        buffer.clear();
+        buffer.put("grasswort".getBytes());
+
     }
 }
