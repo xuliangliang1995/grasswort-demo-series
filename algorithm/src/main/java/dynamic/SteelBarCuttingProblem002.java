@@ -19,9 +19,22 @@ public class SteelBarCuttingProblem002 {
     public static void main(String[] args) {
         int N = 5;
         // 欲切割长度(必须从大到小排列)
-        int[] lenArr = {4, 3, 2, 1};
+        int[] lenArr = {1, 2, 3, 4};
         // 欲切割数量(与长度对应)
-        int[] aArr = {10, 5, 2, 1};
+        int[] aArr = {1, 2, 5, 10};
+
+        for (int i = 1; i < lenArr.length; i++) {
+            int key = lenArr[i];
+            int aKey = aArr[i];
+            int j = i - 1;
+            while (j >= 0 && lenArr[j] < key) {
+                lenArr[j + 1] = lenArr[j];
+                aArr[j + 1] = aArr[j];
+                j--;
+            }
+            lenArr[j + 1] = key;
+            aArr[j + 1] = aKey;
+        }
 
         // 先列举单条钢筋的可切割方案
         int[][] cuttingPlans = cuttingPlan(N, lenArr, 0);
