@@ -17,11 +17,11 @@ public class SteelBarCuttingProblem002 {
      * 求所需 N 米钢管的最少用料
      */
     public static void main(String[] args) {
-        int N = 5;
+        int N = 6;
         // 欲切割长度(必须从大到小排列)
-        int[] lenArr = {4, 3, 2, 1};
+        int[] lenArr = {3, 2, 1};
         // 欲切割数量(与长度对应)
-        int[] aArr = {10, 5, 2, 1};
+        int[] aArr = {3, 2, 1};
 
         // 先列举单条钢筋的可切割方案
         int[][] cuttingPlans = cuttingPlan(N, lenArr, 0);
@@ -86,8 +86,8 @@ public class SteelBarCuttingProblem002 {
             int[] aArrBak = ArrayUtils.clone(aArr);
             int[] planBak = ArrayUtils.clone(plan);
             for (int j = 0; j < aArrBak.length; j++) {
-                if (aArrBak[j] == 0) {
-                    planBak[j] = 0;
+                if (aArrBak[j] < planBak[j]) {
+                    planBak[j] = aArrBak[j];
                 }
                 aArrBak[j] = Math.max(aArrBak[j] - plan[j], 0);
             }
