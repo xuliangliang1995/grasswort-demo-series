@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -38,6 +40,16 @@ public class HeapPlusTest {
         assertTrue(heap.contains(score4));
     }
 
+    @Test
+    public void testRepeatPut() {
+        StudentScore score1 = new StudentScore(1, "xuliang", 100);
+        StudentScore score2 = new StudentScore(1, "xuliang", 100);
+        heap.put(score1);
+        assertThrows(HeapPlus.ElementAlreadyExistsException.class, () -> heap.put(score1));
+        assertThrows(HeapPlus.ElementAlreadyExistsException.class, () -> heap.put(score2));
+        assertEquals(1, heap.size());
+    }
+
     @BeforeEach
     public void setUp() {
         heap = new HeapPlus<>((o1, o2) -> {
@@ -65,6 +77,20 @@ public class HeapPlusTest {
             this.id = id;
             this.name = name;
             this.score = score;
+        }
+
+        @Override
+        public int hashCode() {
+            return id;
+        }
+
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof StudentScore) {
+                return this.id == ((StudentScore) obj).id;
+            }
+            return false;
         }
     }
 }
