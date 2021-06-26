@@ -33,6 +33,7 @@
     * [窗口最大/最小值](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/algorithm/src/main/java/window)
     * [并查集](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/algorithm/src/main/java/unionset)
     * [卡特兰数](https://github.com/xuliangliang1995/grasswort-demo-series/blob/master/algorithm/src/main/java/carterlan/CarterLanNumber.java)
+    * [每日一题](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/algorithm/src/main/java/daily)
 * [**Redis**](https://github.com/xuliangliang1995/grasswort-demo-series/tree/master/redis)
     * [Redis 分布式锁](https://github.com/xuliangliang1995/grasswort-demo-series/blob/master/redis/src/main/java/jedis/lock/RedisReentrantLock.java)
     * [阻塞单播队列](https://github.com/xuliangliang1995/grasswort-demo-series/blob/master/redis/src/main/java/jedis/operation/BlockedUnicastQueueDemo.java)
