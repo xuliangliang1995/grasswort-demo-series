@@ -11,7 +11,7 @@ public class BinaryTreeTraverseUtil {
      * 先序
      * @param node
      */
-    private static void pre(BTNode node) {
+    public static void pre(BTNode node) {
         if (node == null) {
             return;
         }
@@ -24,7 +24,7 @@ public class BinaryTreeTraverseUtil {
      * 中序
      * @param node
      */
-    private static void mid(BTNode node) {
+    public static void mid(BTNode node) {
         if (node == null) {
             return;
         }
@@ -37,7 +37,7 @@ public class BinaryTreeTraverseUtil {
      * 后序
      * @param node
      */
-    private static void post(BTNode node) {
+    public static void post(BTNode node) {
         if (node == null) {
             return;
         }
