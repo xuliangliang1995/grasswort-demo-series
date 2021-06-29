@@ -18,33 +18,11 @@ public class HeapSort implements IMathArraySort {
         for (int i = array.length - 1; i >= 0 ; i--) {
             heapify(array, i, array.length);
         }
-        for (int i = 0; i < array.length; i++) {
-            heapify(array, i, array.length);
+        int heapSize = array.length;
+        while (heapSize > 1) {
+            IntArrayUtil.swap(array, 0, heapSize - 1);
+            heapify(array, 0, --heapSize);
         }
-    }
-
-    /**
-     * 方法 2
-     * @param array
-     */
-    private void heapSort2(int[] array) {
-        int heapSize = 0;
-        for (int i = 0; i < array.length; i++) {
-            heapInsert(array, array[i], heapSize);
-        }
-        for (int i = 0; i < array.length; i++) {
-            heapify(array, i, array.length);
-        }
-    }
-
-    private void heapInsert(int[] array, int value, int heapSize) {
-        array[heapSize] = value;
-        int parentIndex = (heapSize - 1) << 1;
-        while (parentIndex >= 0 && array[parentIndex] < value) {
-            IntArrayUtil.swap(array, parentIndex, value);
-            parentIndex = (parentIndex - 1) << 1;
-        }
-        heapSize++;
     }
 
     /**
@@ -56,12 +34,12 @@ public class HeapSort implements IMathArraySort {
     private void heapify(int[] array, int index, int heapSize) {
         int largestIndex = index;
 
-        int leftIndex = index >> 1 | 1;
+        int leftIndex = index * 2 + 1;
         if (leftIndex < heapSize && array[leftIndex] > array[largestIndex]) {
             largestIndex = leftIndex;
         }
 
-        int rightIndex = index >> 2;
+        int rightIndex = index * 2 + 2;
         if (rightIndex < heapSize && array[rightIndex] > array[largestIndex]) {
             largestIndex = rightIndex;
         }
@@ -72,6 +50,15 @@ public class HeapSort implements IMathArraySort {
 
         IntArrayUtil.swap(array, index, largestIndex);
         heapify(array, largestIndex, heapSize);
+    }
+
+    public static void main(String[] args) {
+        HeapSort sort = new HeapSort();
+        int[] arr = {10, 7, 9, 0, 2, 6, 5, 11, 1};
+        sort.sort(arr);
+        for (int i : arr) {
+            System.out.println(i);
+        }
     }
 
 }

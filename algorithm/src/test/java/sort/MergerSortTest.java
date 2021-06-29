@@ -30,7 +30,7 @@ public class MergerSortTest {
 
     @RepeatedTest(1000)
     void sort() {
-        int[] array = IntArrayUtil.randomArray(10000, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        int[] array = IntArrayUtil.randomArray(10000, 0, Integer.MAX_VALUE);
         int[] duplicate = IntArrayUtil.copyArray(array);
         mergerSort.sort(array);
         Arrays.sort(duplicate);

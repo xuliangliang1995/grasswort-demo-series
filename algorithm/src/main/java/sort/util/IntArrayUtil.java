@@ -1,5 +1,7 @@
 package sort.util;
 
+import java.util.Random;
+
 /**
  * @author xuliangliang
  * @Description 数组工具类
@@ -10,14 +12,15 @@ public class IntArrayUtil {
     /**
      * 随机数组
      * @param size
-     * @param minValue
+     * @param minValue >= 0
      * @param maxValue
      * @return
      */
     public static int[] randomArray(int size, int minValue, int maxValue) {
         int[] array = new int[size];
+        Random random = new Random();
         for (int i = 0; i < array.length; i++) {
-            array[i] = (int)(Math.random() * (maxValue - minValue + 1)) + minValue;
+            array[i] = random.nextInt(maxValue - minValue) + minValue;
         }
         return array;
     }
