@@ -101,17 +101,19 @@ public class HashesMap<K, V> implements Map<K, V> {
 
         @Override
         public K getKey() {
-            return null;
+            return key;
         }
 
         @Override
         public V getValue() {
-            return null;
+            return value;
         }
 
         @Override
         public V setValue(V value) {
-            return null;
+            V preV = this.value;
+            this.value = value;
+            return preV;
         }
     }
 
