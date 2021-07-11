@@ -15,18 +15,31 @@ public class MergerSort implements IMathArraySort {
      */
     @Override
     public void sort(int[] array) {
-        int mergeSize = 1;
-        while (true) {
-            int i = 0;
-            while (i < array.length) {
-                merge(array, i, Math.min(i - 1 + (mergeSize * 2), array.length - 1));
-                i += mergeSize << 1;
-            }
-            if (mergeSize >= (array.length + 1) / 2) {
-                break;
-            }
-            mergeSize <<= 1;
+        mergeSort(array, 0, array.length - 1);
+    }
+
+    private void mergeSort(int[] arr, int L, int R) {
+        if (R == L) {
+            return;
         }
+        int mid = L + ((R - L) / 2);
+        mergeSort(arr, L, mid);
+        mergeSort(arr, mid + 1, R);
+        int[] arrBak = new int[R - L + 1];
+        int l = L;
+        int r = mid + 1;
+        for (int i = 0; i < arrBak.length; i++) {
+            int leftMin = l > mid ? Integer.MAX_VALUE : arr[l];
+            int rightMin = r > R ? Integer.MAX_VALUE : arr[r];
+            if (leftMin < rightMin) {
+                arrBak[i] = leftMin;
+                l++;
+            } else {
+                arrBak[i] = rightMin;
+                r++;
+            }
+        }
+        System.arraycopy(arrBak, 0, arr, L, arrBak.length);
     }
 
     private void merge(int[] array, int i, int j) {

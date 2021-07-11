@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @Description
  * @Date 2020/7/18
  */
-public class MergerSortTest {
+public class MergeSortTest {
 
     private IMathArraySort mergerSort;
 
