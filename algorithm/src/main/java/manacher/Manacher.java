@@ -12,8 +12,7 @@ public class Manacher {
      * @param args
      */
     public static void main(String[] args) {
-        printManacher("gggg");
-        printManacher("abadefgfedaba");
+        printManacher("xaabacxcabaaxcabaax");
     }
 
     /**
