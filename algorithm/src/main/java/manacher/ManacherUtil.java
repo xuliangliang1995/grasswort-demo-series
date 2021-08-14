@@ -52,21 +52,32 @@ public class ManacherUtil {
         if (arr.length == 0) {
             return radiusArr;
         }
-        int C = -1;
+        int cursor = -1;
         int R = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (i < R) {
-                int mirrorIndex = 2 * C - i;
-                int l = mirrorIndex + 1 - radiusArr[mirrorIndex];
-                int L = 2 * C - R + 1;
-                radiusArr[i] = l >= L ? radiusArr[mirrorIndex] : (R - i);
-            }
-
-            while (R < arr.length && 2 * i - R >= 0 && arr[R] == arr[2 * i - R]) {
+        int C = 0;
+        while (++cursor < arr.length) {
+            if (cursor > R) {
                 R++;
-                C = i;
-                radiusArr[i] = radiusArr[i] + 1;
+                C = cursor;
+            } else {
+                int mirrorCursor = 2 * C - cursor;
+                int mirrorRadius = radiusArr[mirrorCursor] > 0 ? radiusArr[mirrorCursor] : 1;
+                int mirrorCursorLeft = mirrorCursor - mirrorRadius + 1;
+                if (mirrorCursorLeft > (2 * C - R)) {
+                    radiusArr[cursor] = mirrorRadius;
+                    continue;
+                }
             }
+            while (true) {
+                int nextRight = R + 1;
+                int nextLeft = 2 * cursor - nextRight;
+                if (nextRight >= arr.length || nextLeft < 0 || arr[nextLeft] != arr[nextRight]) {
+                    break;
+                }
+                R++;
+                C = cursor;
+            }
+            radiusArr[cursor] = R - cursor + 1;
         }
         return radiusArr;
     }

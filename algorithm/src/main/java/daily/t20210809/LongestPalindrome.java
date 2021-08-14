@@ -1,7 +1,5 @@
 package daily.t20210809;
 
-import sort.util.IntArrayUtil;
-
 /**
  * @author 🌺xuliangliang🌺
  * @Description
@@ -47,7 +45,7 @@ public class LongestPalindrome {
     // @x@a@a@b@a@c@  x @c@a@b@a@a@x@c@a@b@a@a@x@
     // 1212321412121(14)12121412
     public int[] toRadiusArr(char[] charArrPlus) {
-        int[] radius = new int[charArrPlus.length];
+        /*int[] radius = new int[charArrPlus.length];
         int C = -1;
         int R = 0;
         for (int i = 0; i < charArrPlus.length; i++) {
@@ -63,8 +61,9 @@ public class LongestPalindrome {
                 R++;
                 radius[i] = radius[i] + 1;
             }
-        }
-        return radius;
+        }*/
+        PalindromeCursor cursor = new PalindromeCursor(charArrPlus);
+        return cursor.radiusArr;
     }
 
     // xaabacxcabaaxcabaax -> @x@a@a@b@a@c@x@c@a@b@a@a@x@c@a@b@a@a@x@
@@ -76,5 +75,82 @@ public class LongestPalindrome {
         }
         System.out.println(new String(newCharArr));
         return newCharArr;
+    }
+
+    public static class PalindromeCursor {
+        private final char[] arr;
+        private int[] radiusArr;
+        private int rightPoint;
+        private int centerPoint;
+        private int cursorPoint = -1;
+
+        public PalindromeCursor(char[] arr) {
+            this.arr = arr;
+            radiusArr = new int[arr.length];
+            while (moveCursorPoint() != -1) {};
+        }
+
+        public int[] getRadiusArr() {
+            return radiusArr;
+        }
+        /**
+         * Current Pointer Can't less than Right Pointer
+         * @return
+         */
+        private int moveCursorPoint() {
+            if (cursorPoint == arr.length - 1) {
+                return -1;
+            }
+            cursorPoint++;
+
+            if (cursorPoint > rightPoint) {
+                moveRightPoint();
+            } else {
+                int leftMirrorIndex = 2 * centerPoint - cursorPoint;
+                int leftMirrorIndexRadius = Math.max(radiusArr[leftMirrorIndex], 1);
+                int leftMirrorExtLeftIndex = leftMirrorIndex - leftMirrorIndexRadius + 1;
+                if (leftMirrorExtLeftIndex > (2 * centerPoint - rightPoint)) {
+                    radiusArr[cursorPoint] = radiusArr[leftMirrorIndex];
+                    return cursorPoint;
+                }
+            }
+            while (tryToMoveRightPoint(arr) != -1) {};
+            radiusArr[cursorPoint] = currentExtLength();
+            return cursorPoint;
+        }
+
+        /**
+         *
+         * @param arr
+         * @return
+         */
+        private int tryToMoveRightPoint(char[] arr) {
+            if (rightPoint == arr.length - 1) {
+                return -1;
+            }
+            int right = rightPoint + 1;
+            int left = 2 * cursorPoint - right;
+            if (left >= 0 && arr[right] == arr[left]) {
+                return moveRightPoint();
+            }
+            return -1;
+        }
+
+        /**
+         * If right pointer move, center point should set to current pointer;
+         * @return
+         */
+        private int moveRightPoint() {
+            if (rightPoint == arr.length - 1) {
+                return -1;
+            }
+            rightPoint++;
+            centerPoint = cursorPoint;
+            return rightPoint;
+        }
+
+        public int currentExtLength() {
+            return rightPoint - cursorPoint + 1;
+        }
     }
 }
