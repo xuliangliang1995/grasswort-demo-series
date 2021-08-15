@@ -11,19 +11,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @Description
  * @Date 2021/8/15
  */
-public class LongestPalindromeTest {
+public class LongestPalindrome002Test {
 
-    private final LongestPalindrome longestPalindrome = new LongestPalindrome();
+    private final LongestPalindrome002 longestPalindrome002 = new LongestPalindrome002();
 
     @RepeatedTest(1000)
     public void test() {
         String randomString = RandomStringUtils.randomAlphabetic(30);
         String str1 = LongestPalindromeDetector.longestPalindrome(randomString);
-        String str2 = longestPalindrome.longestPalindrome(randomString);
+        String str2 = longestPalindrome002.longestPalindrome(randomString);
         assertEquals(str1.length(), str2.length());
         assertTrue(LongestPalindromeDetector.isPalindrome(str2));
     }
-
-
-
 }
