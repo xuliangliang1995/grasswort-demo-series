@@ -21,6 +21,11 @@ public class LinkedListHasCycle {
         System.out.println(new LinkedListHasCycle().hasCycle(node1));
     }
 
+    /**
+     * 是否有环
+     * @param head
+     * @return
+     */
     public boolean hasCycle(ListNode head) {
         ListNode slowCursorNode = head;
         ListNode quickCursorNode = head;
@@ -35,12 +40,22 @@ public class LinkedListHasCycle {
         return false;
     }
 
+    /**
+     * 快指针遍历
+     * @param node
+     * @return
+     */
     private ListNode quickTraverse(ListNode node) {
         return node != null
                 ? (node.next != null ? node.next.next : null)
                 : null;
     }
 
+    /**
+     * 慢指针遍历
+     * @param node
+     * @return
+     */
     private ListNode slowTraverse(ListNode node) {
         return node != null ? node.next : null;
     }

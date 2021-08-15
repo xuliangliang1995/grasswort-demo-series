@@ -32,7 +32,7 @@ public class Test002 {
     }
 
     public static int getHighPosition(int a) {
-        return Integer.valueOf(String.valueOf(a).toCharArray()[0] + "");
+        return Integer.parseInt(String.valueOf(a).toCharArray()[0] + "");
     }
 
     public static void swap(int[] arr, int a, int b) {
