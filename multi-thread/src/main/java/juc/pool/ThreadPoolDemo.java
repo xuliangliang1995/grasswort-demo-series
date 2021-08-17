@@ -1,6 +1,7 @@
 package juc.pool;
 
 import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.LockSupport;
 
@@ -21,19 +22,21 @@ public class ThreadPoolDemo {
                 new DefaultRejectedExecutionHandler());
 
         for (int i = 0; i < 100; i++) {
-            executorService.execute(ThreadPoolDemo::task);
+            Future<Integer> future = executorService.submit(ThreadPoolDemo::task);
+            // future.get();
         }
-
-        LockSupport.park();
+        executorService.shutdown();
     }
 
-    private static void task() {
+    private static int task() {
+        Random random = new Random();
         try {
             System.out.println("executing .");
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return random.nextInt(10);
     }
     static class DefaultRejectedExecutionHandler implements RejectedExecutionHandler {
 
